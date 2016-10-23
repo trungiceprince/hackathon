@@ -1,19 +1,21 @@
 package modules;
 
+import java.awt.*;
+
 /**
  * Created by Nghia on 10/23/2016.
  */
 public class GameModule {
     private int x;
     private int y;
-    final int witdh;
+    final int width;
     final int height;
-    private boolean isAlive;
+    protected boolean isAlive;
 
-    public GameModule(int x, int y, int witdh, int height) {
+    public GameModule(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
-        this.witdh = witdh;
+        this.width = width;
         this.height = height;
         isAlive = true;
     }
@@ -34,8 +36,8 @@ public class GameModule {
         this.y = y;
     }
 
-    public int getWitdh() {
-        return witdh;
+    public int getWidth() {
+        return width;
     }
 
     public int getHeight() {
@@ -52,5 +54,15 @@ public class GameModule {
     public void move(double dx, double dy){
         x+=dx;
         y+=dy;
+    }
+
+    private Rectangle getRect() {
+        return new Rectangle(x, y, width, height);
+    }
+
+    public boolean checkCollideWith(GameModule gameObject) {
+        Rectangle rect1 = this.getRect();
+        Rectangle rect2 = gameObject.getRect();
+        return rect1.intersects(rect2);
     }
 }
