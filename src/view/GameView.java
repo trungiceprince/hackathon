@@ -1,6 +1,5 @@
 package view;
 
-import controllers.SingleController;
 import modules.GameModule;
 
 import java.awt.*;
@@ -17,7 +16,7 @@ public class GameView {
 
     public void draw(GameModule gameModule, Graphics graphics){
         graphics.drawImage(image,gameModule.getX(),gameModule.getY(),
-                    gameModule.getWitdh(),gameModule.getHeight(),
+                    gameModule.getWidth(),gameModule.getHeight(),
                     null);
     }
 }
