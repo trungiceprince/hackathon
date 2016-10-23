@@ -4,16 +4,18 @@ package modules;
  * Created by Nghia on 10/23/2016.
  */
 public class GameModule {
-    int x;
-    int y;
+    private int x;
+    private int y;
     final int witdh;
     final int height;
+    private boolean isAlive;
 
     public GameModule(int x, int y, int witdh, int height) {
         this.x = x;
         this.y = y;
         this.witdh = witdh;
         this.height = height;
+        isAlive = true;
     }
 
     public int getX() {
@@ -39,8 +41,13 @@ public class GameModule {
     public int getHeight() {
         return height;
     }
+    public boolean isAlive() {
+        return isAlive;
+    }
 
-
+    public void setAlive(boolean alive) {
+        isAlive = alive;
+    }
 
     public void move(double dx, double dy){
         x+=dx;

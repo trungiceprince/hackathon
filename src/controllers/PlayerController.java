@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 /**
  * Created by Nghia on 10/23/2016.
  */
-public class PlayerController extends SingleController {
+public class PlayerController extends SingleController implements Contactable{
     public static final int JUMP_HEIGHT = 50;
     public static final int DEFAULT_LOCATION_X = GameConfig.instance.getBackgroundWidth()/2-Player.WIDTH/2;
     public static final int DEFAULT_LOCATION_Y = GameConfig.instance.getBackgroundHeight() *9/10-Player.HEIGHT;
@@ -66,9 +66,6 @@ public class PlayerController extends SingleController {
     }
 
     public void jumpRun(){
-
-
-
         if (jumpCount==0){
             dy=-jumpVelocity;
         }
@@ -88,28 +85,6 @@ public class PlayerController extends SingleController {
             jumpCount++;
 
         }
-//        if(jumpCount >=0 ){
-//            if (jumpCount<=30){
-//                dy=-jumpVelocity;
-//            }
-//            else
-//                if(jumpCount>=45){
-//                    if (jumpCount<=45+30)
-//                        dy=+jumpVelocity;
-//                    else{
-//                        jumpCount=-2;
-//                        dy=0;
-//                        System.out.println("jump stop");
-//                    }
-//
-//            }
-//            jumpCount++;
-//            System.out.println("jumping");
-//        }
-
-
-
-
     }
 
     @Override
@@ -119,4 +94,8 @@ public class PlayerController extends SingleController {
         gameModule.move(dx,dy);
     }
 
+    @Override
+    public void onCollide(Contactable contactable) {
+
+    }
 }

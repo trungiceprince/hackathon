@@ -5,6 +5,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 
+import controllers.ControllerManager;
 import controllers.GameConfig;
 import controllers.PlayerController;
 import modules.Player;
@@ -19,7 +20,9 @@ public class GameWindow extends Frame implements Runnable {
     Image backgroundImage;
     Image backBufferImage;
     PlayerController playerController;
+    ControllerManager controllerManager;
     public GameWindow()  {
+        controllerManager = new ControllerManager();
         int backgroundWith = GameConfig.instance.getBackgroundWidth();
         int backgroundHeight = GameConfig.instance.getBackgroundHeight();
         backgroundImage = Utils.loadImageFromResources("background.png");
@@ -28,6 +31,8 @@ public class GameWindow extends Frame implements Runnable {
         playerController = new PlayerController(
                                 new GameView(Utils.loadImageFromResources("plane1.png"))
                                 );
+
+        controllerManager.add(playerController);
 
 
         this.setVisible(true);
@@ -99,7 +104,7 @@ public class GameWindow extends Frame implements Runnable {
                                         GameConfig.instance.getBackgroundHeight(),
                                         null);
 
-        playerController.draw(backbufferedGraphics);
+        controllerManager.draw(backbufferedGraphics);
 
 
 
@@ -116,7 +121,7 @@ public class GameWindow extends Frame implements Runnable {
         while(true){
             try {
                 Thread.sleep(GameConfig.instance.getThreadDelayInMiliseconds());
-                playerController.run();
+                controllerManager.run();
                 repaint();
             } catch (InterruptedException e) {
                 e.printStackTrace();

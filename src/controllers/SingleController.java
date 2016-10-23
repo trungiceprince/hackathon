@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Created by Nghia on 10/23/2016.
  */
-public class SingleController {
+public class SingleController implements BaseController {
     GameModule gameModule;
     GameView gameView;
 
