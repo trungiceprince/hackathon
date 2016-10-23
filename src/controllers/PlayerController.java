@@ -6,6 +6,7 @@ import modules.Player;
 import utils.Utils;
 import view.GameView;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -30,11 +31,12 @@ public class PlayerController extends SingleController implements Contactable{
 
     public PlayerController(Player gameModule, GameView gameView) {
         super(gameModule, gameView);
-        bulletControllers = new ControllerManager();
+
     }
 
     public PlayerController(GameView gameView) {
         super(new Player(DEFAULT_LOCATION_X,DEFAULT_LOCATION_Y), gameView);
+        bulletControllers = new ControllerManager();
     }
 
     public void keyPressed(KeyEvent e) {
@@ -65,13 +67,18 @@ public class PlayerController extends SingleController implements Contactable{
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_DOWN:
-                dy = 0;
+//                dy = 0;
                 break;
 
         }
     }
 
     private void createBullet() {
+        BulletController bulletController = new BulletController(
+                new Bullet(gameModule.getX() + gameModule.getWidth(), gameModule.getY() + 10),
+                new GameView(Utils.loadImageFromResources("bullet.png"))
+        );
+        bulletControllers.add(bulletController);
     }
 
     public void jump(){
@@ -105,6 +112,13 @@ public class PlayerController extends SingleController implements Contactable{
 //        count++;
         jumpRun();
         gameModule.move(dx,dy);
+        bulletControllers.run();
+    }
+
+    @Override
+    public void draw(Graphics graphics) {
+        super.draw(graphics);
+        bulletControllers.draw(graphics);
     }
 
     @Override

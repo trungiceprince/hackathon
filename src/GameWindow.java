@@ -21,6 +21,10 @@ public class GameWindow extends Frame implements Runnable {
     Image backBufferImage;
     PlayerController playerController;
     ControllerManager controllerManager;
+
+    public static int dx;
+    public static int dy;
+
     public GameWindow()  {
         controllerManager = new ControllerManager();
         int backgroundWith = GameConfig.instance.getBackgroundWidth();
@@ -95,6 +99,7 @@ public class GameWindow extends Frame implements Runnable {
     public void paint(Graphics graphics) {
         super.paint(graphics);
         System.out.println("loaded");
+
     }
 
     public void update(Graphics graphics){
@@ -103,6 +108,11 @@ public class GameWindow extends Frame implements Runnable {
                                         GameConfig.instance.getBackgroundWidth(),
                                         GameConfig.instance.getBackgroundHeight(),
                                         null);
+
+//        backbufferedGraphics.drawImage(backgroundImage, -dx, 0,
+//                                    GameConfig.instance.getBackgroundWidth(),
+//                                    GameConfig.instance.getBackgroundHeight(),
+//                                    null);
 
         controllerManager.draw(backbufferedGraphics);
 
@@ -122,6 +132,9 @@ public class GameWindow extends Frame implements Runnable {
             try {
                 Thread.sleep(GameConfig.instance.getThreadDelayInMiliseconds());
                 controllerManager.run();
+//                if (playerController.getGameModule().getX() > GameConfig.instance.getBackgroundWidth()/2) {
+//                    GameWindow.dx = playerController.getGameModule().getX() - GameConfig.instance.getBackgroundWidth()/2;
+//                }
                 repaint();
             } catch (InterruptedException e) {
                 e.printStackTrace();
