@@ -4,8 +4,8 @@ package controllers;
  * Created by Nghia on 10/23/2016.
  */
 public class GameConfig {
-    public static final int DEFAULT_BACKGROUND_WIDTH = 800;
-    public static final int DEFAULT_BACKGROUND_HEIGHT = 600;
+    public static final int DEFAULT_BACKGROUND_WIDTH = 1000;
+    public static final int DEFAULT_BACKGROUND_HEIGHT = 400;
     public static final int DEFAUL_DELAY = 17;
     public static final int GRAVITY_ACCELEBRATION = 5;
 

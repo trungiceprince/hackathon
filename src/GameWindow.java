@@ -29,7 +29,7 @@ public class GameWindow extends Frame implements Runnable {
         backBufferImage = new BufferedImage(backgroundWith,backgroundHeight,BufferedImage.TYPE_INT_ARGB);
 
         playerController = new PlayerController(
-                                new GameView(Utils.loadImageFromResources("plane1.png"))
+                                new GameView(Utils.loadImageFromResources("gamePlayer_right.png"))
                                 );
 
         controllerManager.add(playerController);

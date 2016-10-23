@@ -1,7 +1,9 @@
 package controllers;
 
+import modules.Bullet;
 import modules.GameModule;
 import modules.Player;
+import utils.Utils;
 import view.GameView;
 
 import java.awt.event.KeyEvent;
@@ -22,8 +24,13 @@ public class PlayerController extends SingleController implements Contactable{
     private double dx=0;
     private double dy=0;
     private double jumpVelocity = DEFAULT_JUMP_VELOCITY;
+    private int SPEED = 3;
+
+    private ControllerManager bulletControllers;
+
     public PlayerController(Player gameModule, GameView gameView) {
         super(gameModule, gameView);
+        bulletControllers = new ControllerManager();
     }
 
     public PlayerController(GameView gameView) {
@@ -33,16 +40,19 @@ public class PlayerController extends SingleController implements Contactable{
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
+                dx = SPEED;
                 break;
             case KeyEvent.VK_LEFT:
+                dx = -SPEED;
                 break;
             case KeyEvent.VK_UP:
+                if (jumpCount==-1)
+                    jump();
                 break;
             case KeyEvent.VK_DOWN:
                 break;
             case KeyEvent.VK_SPACE:
-                if (jumpCount==-1)
-                    jump();
+                createBullet();
                 break;
         }
     }
@@ -59,6 +69,9 @@ public class PlayerController extends SingleController implements Contactable{
                 break;
 
         }
+    }
+
+    private void createBullet() {
     }
 
     public void jump(){
