@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import controllers.ControllerManager;
 import controllers.GameConfig;
 import controllers.PlayerController;
+import controllers.ZombieControllerManager;
 import modules.Player;
 import utils.*;
 import view.GameView;
@@ -20,6 +21,7 @@ public class GameWindow extends Frame implements Runnable {
     Image backgroundImage;
     Image backBufferImage;
     PlayerController playerController;
+    ZombieControllerManager zombieControllerManager;
     ControllerManager controllerManager;
 
     public static int dx;
@@ -35,8 +37,10 @@ public class GameWindow extends Frame implements Runnable {
         playerController = new PlayerController(
                                 new GameView(Utils.loadImageFromResources("gamePlayer_right.png"))
                                 );
+        zombieControllerManager = new ZombieControllerManager();
 
         controllerManager.add(playerController);
+        controllerManager.add(zombieControllerManager);
 
 
         this.setVisible(true);
