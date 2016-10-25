@@ -43,9 +43,11 @@ public class PlayerController extends SingleController implements Contactable{
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
                 dx = SPEED;
+                gameView = new GameView(Utils.loadImageFromResources("gamePlayer_right.png"));
                 break;
             case KeyEvent.VK_LEFT:
                 dx = -SPEED;
+                gameView = new GameView(Utils.loadImageFromResources("gamePlayer_left.png"));
                 break;
             case KeyEvent.VK_UP:
                 if (jumpCount==-1)
