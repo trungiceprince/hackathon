@@ -75,7 +75,7 @@ public class PlayerController extends SingleController implements Contactable{
 
     private void createBullet() {
         BulletController bulletController = new BulletController(
-                new Bullet(gameModule.getX() + gameModule.getWidth(), gameModule.getY() + 10),
+                new Bullet(gameModule.getX() + gameModule.getWidth(), gameModule.getY() + gameModule.getHeight()/3),
                 new GameView(Utils.loadImageFromResources("bullet.png"))
         );
         bulletControllers.add(bulletController);
