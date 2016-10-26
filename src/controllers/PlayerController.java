@@ -43,9 +43,11 @@ public class PlayerController extends SingleController implements Contactable{
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
                 dx = SPEED;
+                gameView = new GameView(Utils.loadImageFromResources("gamePlayer_right.png"));
                 break;
             case KeyEvent.VK_LEFT:
                 dx = -SPEED;
+                gameView = new GameView(Utils.loadImageFromResources("gamePlayer_left.png"));
                 break;
             case KeyEvent.VK_UP:
                 if (jumpCount==-1)
@@ -75,7 +77,7 @@ public class PlayerController extends SingleController implements Contactable{
 
     private void createBullet() {
         BulletController bulletController = new BulletController(
-                new Bullet(gameModule.getX() + gameModule.getWidth(), gameModule.getY() + 10),
+                new Bullet(gameModule.getX() + gameModule.getWidth(), gameModule.getY() + gameModule.getHeight()/3),
                 new GameView(Utils.loadImageFromResources("bullet.png"))
         );
         bulletControllers.add(bulletController);

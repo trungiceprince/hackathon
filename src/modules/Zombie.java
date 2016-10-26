@@ -13,6 +13,7 @@ public class Zombie extends GameModule{
     }
 
 }
+<<<<<<< HEAD
 //sửa lại kích thước của con player luôn đi
 //nhìn tù quá
 //=ưư
@@ -59,3 +60,6 @@ public class Zombie extends GameModule{
 //thôi out đây
 //xem phim heo tiếp
 //okie
+=======
+
+>>>>>>> 1da4a959b17a182cef82566a9c32103ea5c2220a
