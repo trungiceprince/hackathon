@@ -1,7 +1,6 @@
 package controllers;
 
 import modules.Bullet;
-import modules.GameModule;
 import modules.Player;
 import utils.Utils;
 import view.GameView;
@@ -37,17 +36,21 @@ public class PlayerController extends SingleController implements Contactable{
     public PlayerController(GameView gameView) {
         super(new Player(DEFAULT_LOCATION_X,DEFAULT_LOCATION_Y), gameView);
         bulletControllers = new ControllerManager();
+        CollisionPool.instance.register(this);
+    }
+    public void getHit(int damage) {
+        ((Player)gameModule).decreaseHP(damage);
     }
 
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
                 dx = SPEED;
-                gameView = new GameView(Utils.loadImageFromResources("gamePlayer_right.png"));
+                gameDrawer = new GameView(Utils.loadImageFromResources("gamePlayer_right.png"));
                 break;
             case KeyEvent.VK_LEFT:
                 dx = -SPEED;
-                gameView = new GameView(Utils.loadImageFromResources("gamePlayer_left.png"));
+                gameDrawer = new GameView(Utils.loadImageFromResources("gamePlayer_left.png"));
                 break;
             case KeyEvent.VK_UP:
                 if (jumpCount==-1)

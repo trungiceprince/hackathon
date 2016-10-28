@@ -44,7 +44,12 @@ public class CollisionPool implements BaseController {
     }
 
     @Override
-    public void draw(Graphics graphics) {
+    public void draw(Graphics g) {
 
     }
+    public void register(Contactable contactable) {
+        contactableVector.add(contactable);
+    }
+
+    public static final CollisionPool instance = new CollisionPool();
 }

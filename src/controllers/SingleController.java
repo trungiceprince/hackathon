@@ -1,7 +1,7 @@
 package controllers;
 
 import modules.GameModule;
-import view.GameView;
+import view.GameDrawer;
 
 import java.awt.*;
 
@@ -10,11 +10,11 @@ import java.awt.*;
  */
 public class SingleController implements BaseController {
     GameModule gameModule;
-    GameView gameView;
+    GameDrawer gameDrawer;
 
-    public SingleController(GameModule gameModule, GameView gameView) {
+    public SingleController(GameModule gameModule, GameDrawer gameDrawer) {
         this.gameModule = gameModule;
-        this.gameView = gameView;
+        this.gameDrawer = gameDrawer;
     }
 
     public GameModule getGameModule() {
@@ -24,9 +24,12 @@ public class SingleController implements BaseController {
     public void run(){
 
     }
+    public void destroy() {
+        gameModule.setAlive(false);
+    }
 
     public void draw(Graphics graphics){
-        gameView.draw(gameModule,graphics);
+        gameDrawer.drawImage(gameModule,graphics);
     }
 
 

@@ -14,7 +14,7 @@ public class BulletController extends SingleController implements Contactable {
 
     public BulletController(GameModule gameModule, GameView gameView) {
         super(gameModule, gameView);
-//        CollisionPool.instance.register(this);
+        CollisionPool.instance.register(this);
     }
 
     @Override
@@ -24,6 +24,8 @@ public class BulletController extends SingleController implements Contactable {
 
     @Override
     public void onCollide(Contactable contactable) {
-
+        if(contactable instanceof ZombieController){
+            ((ZombieController) contactable).destroy();
+        }
     }
 }
